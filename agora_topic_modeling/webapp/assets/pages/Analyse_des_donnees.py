@@ -62,9 +62,9 @@ def write():
         question_id = st.text_input("Id de la question à analyser:")
         if question_id != "":
             df = read_and_prep_data_from_question_id(question_id)
-            row = df_question[df_question["id"] == question_id]
-            question = row["title"].values[0]
-            consultation_name = row["consultation_title"].values[0]
+            row = df_question[df_question["question_id"] == question_id]
+            question = row["question_id"].values[0]
+            consultation_name = row["consultation_id"].values[0]
     elif choice == "Fichier":
         st.write("Upload un fichier qui contient une colone response_text")
         question = st.text_input("Titre de la question", value="Question_custom")

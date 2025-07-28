@@ -53,6 +53,9 @@ Utilisation de la plateforme Scalingo pour déployer cet outil de gestion de pip
 Déploiement manuel de l'application sur l'interface de Scalingo en sélectionnant la branche à déployer.
 Scalingo utilise un *Procfile* situé à la racine du projet pour savoir quoi lancer au démarrage de l'application déployée.
 
+À noter que le contenu des différentes requêtes SQL sont inclus dans l'image. Changer ces requêtes peut rendre l'image
+trop volumineuse pour Scalingo.
+
 ### Usage
 
 ```sh
