@@ -29,7 +29,8 @@ def get_lightweight_bertopic_model(X: pd.Series)-> tuple[BERTopic, pd.DataFrame]
         TruncatedSVD(100)
     )
     nr_topics = 10
-    topic_model = BERTopic(embedding_model=pipe, vectorizer_model=vectorizer_model, nr_topics=nr_topics, language="french", verbose=True)
+    min_topic_size = 2 if round(X.size * 0.04) < 2 else round(X.size * 0.04)
+    topic_model = BERTopic(embedding_model=pipe, vectorizer_model=vectorizer_model, nr_topics=nr_topics, min_topic_size=min_topic_size, language="french", verbose=True)
     print("Fit Transform")
     topics, probs = topic_model.fit_transform(X)
     print("Returns")
