@@ -28,9 +28,7 @@ def get_lightweight_bertopic_model(X: pd.Series)-> tuple[BERTopic, pd.DataFrame]
         TfidfVectorizer(),
         TruncatedSVD(100)
     )
-    nr_topics = 10
-    min_topic_size = 100
-    topic_model = BERTopic(embedding_model=pipe, vectorizer_model=vectorizer_model, nr_topics=nr_topics, min_topic_size=min_topic_size, language="french", verbose=True)
+    topic_model = BERTopic(embedding_model=pipe, vectorizer_model=vectorizer_model, language="french", verbose=True)
     print("Fit Transform")
     topics, probs = topic_model.fit_transform(X)
     print("Returns")
@@ -42,14 +40,13 @@ def get_custom_bertopic_model(X: pd.Series, nr_topics: int=10, min_topic_size: i
     print("Vectorized model")
     vectorizer_model = CountVectorizer(stop_words=stopwords.words("french"), strip_accents="ascii")
     #embedding_model = SentenceTransformer("/Users/theo.santos/Documents/Missions/Agora/models")
-
     #cluster_model = KMeans(n_clusters=5)
     
     #nr_topics = "auto"
     if not sub_topics:
         print("Topic model")
         #topic_model = BERTopic(embedding_model=embedding_model, vectorizer_model=vectorizer_model, nr_topics=nr_topics, min_topic_size=min_topic_size, language="french", verbose=True)
-        topic_model = BERTopic(vectorizer_model=vectorizer_model, nr_topics=nr_topics, language="french", verbose=True)
+        topic_model = BERTopic(vectorizer_model=vectorizer_model, language="french", verbose=True)
     else:
         print("SubTopic model")
         n_docs = 2 if round(X.size * 0.02) < 2 else round(X.size * 0.02)
