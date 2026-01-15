@@ -52,7 +52,7 @@ def get_custom_bertopic_model(X: pd.Series, nr_topics: int=10, min_topic_size: i
         topic_model = BERTopic(vectorizer_model=vectorizer_model, nr_topics=nr_topics, language="french", verbose=True)
     else:
         print("SubTopic model")
-        n_docs = round(X.size * 0.02)
+        n_docs = 2 if round(X.size * 0.02) < 2 else round(X.size * 0.02)
         topic_model = BERTopic(vectorizer_model=vectorizer_model, min_topic_size=n_docs, language="french")
     
     print("Fit Transform")
